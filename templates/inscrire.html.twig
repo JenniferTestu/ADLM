@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+	<div id="contenu">
+		<div>	
+			<h3>Veuillez remplir les champs ci dessous</h3>
+			<p>* champs obligatoires</p>
+			<br />
+			<br />
+			{{ form_start(form,{'attr': {'id': 'form_inscrip'}}) }}
+    		{{ form_errors(form) }}
+			
+				<div>
+					{{ form_label(form.nom, "Nom :")}}*<br />
+                  	{{ form_errors(form.nom) }}
+                  	{{ form_widget(form.nom,{'attr': {'size': '40'}}) }}
+					<br /><br />
+					{{ form_label(form.prenom, "Prénom :")}}*<br />
+                  	{{ form_errors(form.prenom) }}
+                  	{{ form_widget(form.prenom,{'attr': {'size': '40'}}) }}
+					<br /><br />
+					{{ form_label(form.mail, "Adresse mail :")}}*<br />
+                  	{{ form_errors(form.mail) }}
+                  	{{ form_widget(form.mail,{'attr': {'size': '40'}}) }}
+					<br /><br />
+					{{ form_label(form.mdp, "Mot de passe :")}}*<br />
+                  	{{ form_errors(form.mdp) }}
+                  	{{ form_widget(form.mdp,{'attr': {'size': '40'}}) }}
+					<br /><br />
+					Confirmation du mot de passe *:<br />
+					<input name="mdp2" type="password" id="mdp2" size="40" />
+					<br /><br />
+				</div>
+				<div>{#
+					{{ form_label(form.adresse, "Adresse :")}}*<br />
+                  	{{ form_errors(form.adresse) }}
+                  	{{ form_widget(form.adresse,{'attr': {'size': '40'}}) }}
+					<br /><br />
+					{{ form_label(form.cp, "Code postal :")}}*<br />
+                  	{{ form_errors(form.cp) }}
+                  	{{ form_widget(form.cp,{'attr': {'size': '40'}}) }}
+					<br /><br />
+					{{ form_label(form.ville, "Ville :")}}*<br />
+                  	{{ form_errors(form.ville) }}
+                  	{{ form_widget(form.ville,{'attr': {'size': '40'}}) }}
+					<br /><br />
+					{{ form_label(form.pays, "Pays :")}}*<br />
+                  	{{ form_errors(form.pays) }}
+                  	{{ form_widget(form.pays,{'attr': {'size': '40'}}) }}#}
+					<br /><br />
+					{{ form_label(form.tel, "Numéro de téléphone :")}}*<br />
+                  	{{ form_errors(form.tel) }}
+                  	{{ form_widget(form.tel,{'attr': {'size': '40'}}) }}
+					<br />
+					<br />
+					<br />
+				   {{ form_widget(form.Valider, {'attr': {'class': 'btn btn-primary'}}) }}
+				</div>
+		  
+{{ form_end(form) }}
+		</div>
+		
+	</div>	
+		
+{% endblock %}

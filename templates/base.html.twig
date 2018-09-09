@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+		<title>Autour de la moto</title>
+		<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('style/logo.png')}}">
+		{% block stylesheets %}
+    	<link href="{{ asset('style/style.css')}}" rel="stylesheet">
+    	{% endblock %}
+    </head>
+    <header>
+	<div id="reseaux">
+		<a href="https://www.facebook.com/autourdelamoto/" target="_blank"><img id="img-fb" src="{{ asset('style/fb.png')}}" align="absmiddle">Facebook</a><br /> 
+		<a href="mailto:autourdelamoto@hotmail.fr"><img id="img-courrier" src="{{ asset('style/courrier.png')}}" align="absmiddle">Contact</a>
+	</div>
+	
+	<a href="{{ path('index') }}"><img id="logo" src="{{ asset('style/logo.png')}}"></a>
+	
+	<div id="panier">
+		<a href="{{ path('panier') }}"><img id="img-panier" src="{{ asset('style/panier.png')}}" align="absmiddle">Panier</a>
+	</div>
+		
+</header>
+
+<nav>
+		<ul>
+		  <li><a href="#homme">Homme</a>
+			<ul>
+				<li><a href="./produit_liste.php?categorie=Homme&souscategorie=Blousons">Blousons</a></li>
+				<li><a href="./produit_liste.php?categorie=Homme&souscategorie=Sportswear">Sportswear</a></li>
+				<li><a href="./produit_liste.php?categorie=Homme&souscategorie=Gants">Gants</a></li>
+				<li><a href="./produit_liste.php?categorie=Homme&souscategorie=Chaussures">Chaussures</a></li>
+			</ul>
+		  </li>
+		  <li><a href="#femme">Femme</a>
+			<ul>
+				<li><a href="./produit_liste.php?categorie=Femme&souscategorie=Blousons">Blousons</a></li>
+				<li><a href="./produit_liste.php?categorie=Femme&souscategorie=Sportswear">Sportswear</a></li>
+				<li><a href="./produit_liste.php?categorie=Femme&souscategorie=Gants">Gants</a></li>
+				<li><a href="./produit_liste.php?categorie=Femme&souscategorie=Chaussures">Chaussures</a></li>
+			</ul>
+		  </li>
+		  <li><a href="#enfant">Enfant</a>
+			<ul>
+				<li><a href="./produit_liste.php?categorie=Enfant&souscategorie=Sportswear">Sportswear</a></li>
+				<li><a href="./produit_liste.php?categorie=Enfant&souscategorie=Gants">Gants</a></li>
+				<li><a href="./produit_liste.php?categorie=Enfant&souscategorie=Chaussures">Chaussures</a></li>
+				<li><a href="./produit_liste.php?categorie=Enfant&souscategorie=Accessoires">Accessoires</a></li>
+			</ul>
+		  </li>
+		  <li><a href="#divers">Divers</a>
+			<ul>
+				<li><a href="./produit_liste.php?categorie=Divers&souscategorie=Bijoux">Bijoux</a></li>
+				<li><a href="./produit_liste.php?categorie=Divers&souscategorie=Porte cles">Porte clés</a></li>
+				<li><a href="./produit_liste.php?categorie=Divers&souscategorie=Stickers">Stickers</a></li>
+				<li><a href="./produit_liste.php?categorie=Divers&souscategorie=Coques">Coques de téléphone</a></li>
+			</ul>
+		  </li>
+		  <li><a href="#equipements">Equipement</a>
+			<ul>
+				<li><a href="./produit_liste.php?categorie=Equipement&souscategorie=Poignees">Poignées</a></li>
+				<li><a href="./produit_liste.php?categorie=Equipement&souscategorie=Decorations">Décorations</a></li>
+			</ul>
+		  </li>
+		  <li id="identification">
+ 				
+				{% if app.user %}
+					<a href="./espace">{{app.user.prenom}}</a>
+				{% else %}
+					<a href="./connexion">S'identifier</a>
+				{% endif %}
+				
+		  </li>
+		  <li id="inscription">
+				
+		  		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+					<a href="./deconnexion">Déconnexion</a>
+				{% else %}
+					<a href="./inscrire">S'inscrire</a>
+				{% endif %}
+				
+		  </li>
+		  <li id="faq"><a href="./faq">F.A.Q</a>
+		  </li>
+		  <li id="faq"><a href="#">Evenements</a>
+		  </li>
+		  <li id="faq"><a href="#">Rassemblements</a>
+		  </li>
+		</ul>
+</nav>
+    <body>
+        {% block body %}
+        {% endblock %}
+    </body>
+    <footer>©2018 Autour de la moto</footer>
+</html>

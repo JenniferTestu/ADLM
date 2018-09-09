@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+	<h3>LES NOUVEAUTES !!</h3>
+	
+	<div id="contenu">
+		
+		<p id="liste">
+
+		{% if liste|length > 0 %}
+			
+			{% for liste in liste %}
+
+			<div class="produit">
+			
+			  <div valign="top"><a href={{ path('produit', {'id':liste.id}) }}><img style="border:#666 1px solid;" src="{{ asset(liste.getChemin) }}" height="102" border="1" /></a></div><br>
+			  <div valign="top">{{ liste.nom }}
+				<br>{{ liste.prix }} €
+				<br><a href={{ path('produit', {'id':liste.id}) }}>Voir en détails</a></div>
+			
+		  	</div>
+
+			{% endfor %}
+
+		{% else %}
+			Aucun produit pour le moment
+		{% endif %}
+
+		</p>
+
+	</div>	
+		
+{% endblock %}

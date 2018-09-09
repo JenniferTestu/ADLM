@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<!--
+<?php 
+// Afficher les erreurs
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+?>
+<?php 
+$dynamicList = "";
+// On recupere l'id du produit
+if (isset($_GET['id'])) {
+	// Connexion a la base de données 
+    include "scripts/connect_to_mysql.php"; 
+	// Gestion des accents
+	mysqli_query($con,"SET NAMES 'utf8'");
+	$id = preg_replace('#[^0-9]#i', '', $_GET['id']); 
+	// On verifie si le produit existe et on prend ses informations
+	$sql = mysqli_query($con,"SELECT * FROM produits WHERE id='$id' LIMIT 1");
+	$productCount = mysqli_num_rows($sql); // On compte le nombre de resultat
+    if ($productCount > 0) {
+		while($row = mysqli_fetch_array($sql)){ 
+			 $product_name = $row["nom_produit"];
+			 $price = $row["prix"];
+			 $details = $row["details"];
+			 $category = $row["categorie"];
+			 $subcategory = $row["souscategorie"];
+			 $date_added = strftime("%b %d, %Y", strtotime($row["date_ajout"]));
+        }
+		
+		// On verifie si le produit est en stock et on renvoie les tailles dispo
+		$sql2=mysqli_query($con,"SELECT taille FROM stocks WHERE id_produit='$id' AND nombre>0");
+	 
+		while($row=mysqli_fetch_assoc($sql2)){ // On lit les resultats
+			$liste_taille = $row["taille"];
+			$dynamicList .= '<input type="radio" name="taille" value='.$liste_taille.'>'.$liste_taille;		
+		}
+		
+	} else {
+		echo "Cet article n'existe pas";
+	    exit();
+	}
+		
+} else {
+	echo "Problème de données";
+	exit();
+}
+mysqli_close($con);
+?>
+-->
+<div align="center" id="mainWrapper">
+
+  <div id="pageContent">
+  <table width="100%" border="0" cellspacing="0" cellpadding="15">
+  <tr>
+    <td width="19%" valign="top"><img src="{{ asset(article.getChemin) }}" height="188" alt="" /><br />
+      <a href={{ asset(article.getChemin) }}>Agrandir l'image</a></td>
+    <td width="81%" valign="top"><h3>{{ article.nom }}</h3>
+      <p>{{ article.prix }} &euro;<br />
+        <br />
+        {{ article.categorie.cat }} {{ article.categorie.souscat }} <br />
+		<br />
+        {{ article.description }}
+		<br />
+        </p>
+      {{ form_start(form) }}
+      {{ form_start(form,{'attr': {'id': 'form1'}}) }}
+        <input type="hidden" name="pid" id="pid" value="{{ article.id }}" />
+		<br /><br />
+      {{ form_end(form) }}
+
+      </td>
+    </tr>
+</table>
+  </div>
+</div>
+{% endblock %}

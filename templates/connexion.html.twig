@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div id="contenu">
+	<div>	
+		<h3>Pour vous connectez</h3>
+		<form id="form_connexion" name="form1" action="{{ path('connexion') }}" method="post">
+		Adresse mail :<br />
+        <input  class="form-control" id="mail" name="_username" type="text" size="40" value="{{ last_username }}"/>
+        <br /><br />
+        Mot de passe :<br />
+		<input class="form-control" id="password" name="_password" type="password" size="40" />
+		<br />
+		<br />
+		<a href="./inscrire.php">Pas encore de compte ?</a>
+		<br />
+		<br />
+		<br />
+       	<input type="hidden" name="_target_path" value="/index" />
+        <input type="submit" name="Valider" id="button" value="Valider" />
+       
+      </form>
+        {% endblock %}
